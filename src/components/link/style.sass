@@ -1,0 +1,25 @@
+@import "src/common/styles/variables.scss"
+
+.link-wrapper
+  width: 100%
+  margin-bottom: 30px
+
+.link
+  color: $link
+  font-size: 12.5px
+  text-decoration: none
+  position: relative
+  display: inline-block
+
+  &:before
+    content: ''
+    display: block
+    width: 0
+    height: 2px
+    bottom: 0
+    position: absolute
+    border-bottom: 1px solid $link
+
+  &:hover
+    &:before
+      width: 100%

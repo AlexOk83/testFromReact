@@ -1,0 +1,27 @@
+@import "src/common/styles/variables"
+
+.form
+  width: 100%
+  max-width: 369px
+  margin-bottom: 61px
+  &__title
+    font-size: 24px
+    font-weight: bold
+    width: 100%
+    margin-bottom: 42px
+
+  &__button
+    outline: none
+    width: 100%
+    border: none
+    height: 50px
+    line-height: 50px
+    background: linear-gradient(to right, $button1, $button2)
+    color: $white
+    text-transform: uppercase
+    border-radius: 25px
+    letter-spacing: 0.2px
+    cursor: pointer
+    &:disabled
+      background: $grey
+      cursor: default
