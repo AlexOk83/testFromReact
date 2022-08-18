@@ -7,7 +7,7 @@ import { IconfigForm } from "./types";
 import './style.sass'
 
 export default function getForm(config: IconfigForm<unknown>) {
-    function Form(props: InjectedFormProps) {
+    const Form: React.FC<InjectedFormProps> = (props ) => {
 
            const { title, textButton, onSubmit, fields } = config;
            const { handleSubmit, invalid } = props;
