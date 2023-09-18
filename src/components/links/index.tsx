@@ -7,7 +7,14 @@ export const Links: FC<{}> = () => {
     const [value, setValue] = useState('');
     const [stand, setSelectedStand] = useState('');
     const [service, setService] = useState('');
-    const [services, setServices] = useState(['showcase-product', 'personal-area-app-of-param-setting']);
+    const [services, setServices] = useState([
+        'showcase-product',
+        'personal-area-app-of-param-setting',
+        'personal-area-app-of-joining',
+        'personal-area-user',
+        'personal-area',
+        'mrp-attorney',
+    ]);
     const [forCuber, setForCuber] = useState({
         first: '',
         last: '',
