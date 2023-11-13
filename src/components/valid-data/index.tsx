@@ -5,12 +5,20 @@ import {InputNumber} from "primereact/inputnumber";
 import { InputTextarea } from 'primereact/inputtextarea';
 import {Nullable} from "primereact/ts-helpers";
 
+const replaceAt = (str: string, index: number, replacement: string) => {
+    const from = str.substring(0, index);
+    const to = str.substring(index, str.length);
+
+    return `${from}${replacement}${to}`;
+}
+
 export const ValidData: FC<{}> = () => {
     const [value1, setValue1] = useState(''); // ИНН ФЛ
     const [value2, setValue2] = useState(''); // СНИЛС
     const [value3, setValue3] = useState(''); // ИНН ЮЛ
     const [value4, setValue4] = useState(''); // ОГРН
     const [value5, setValue5] = useState(''); // КПП
+    const [value8, setValue8] = useState(''); // КПП
     const [value6, setValue6] = useState<Nullable<number | null>>(40); // количество
     const [value7, setValue7] = useState(''); // количество
 
@@ -73,6 +81,28 @@ export const ValidData: FC<{}> = () => {
         rezult = rezult + kontr;
 
         return rezult;
+    }
+
+    const genPass = (specialSymbols: string, length: number) => {
+        let result = '';
+        let result2 = '';
+
+        let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let charactersLength = characters.length;
+
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+
+        if (specialSymbols.length > 0) {
+            const specialSymbol = specialSymbols.charAt(Math.floor(Math.random() * specialSymbols.length));
+            const place = Math.floor(Math.random() * length);
+
+            result = replaceAt(result, place, specialSymbol);
+
+        }
+
+        return result;
     }
 
     const genSnils = () => {
@@ -236,6 +266,18 @@ export const ValidData: FC<{}> = () => {
                     placeholder={'КПП'}
                     value={value5}
                     onChange={(e) => setValue5(e.target.value)} className={'w-full md:w-20rem mb-3'}
+                />
+            </div>
+            <div className={'w-full flex gap-2'}>
+                <Button
+                    label="Сгенерировать пароль"
+                    className={'w-full md:w-20rem mb-3'}
+                    onClick={() => {setValue8(genPass('!&?', 8))}}
+                />
+                <InputText
+                    placeholder={'сгенерированный пароль'}
+                    value={value8}
+                    onChange={(e) => setValue8(e.target.value)} className={'w-full md:w-20rem mb-3'}
                 />
             </div>
             <div className={'w-full flex gap-2'}>
